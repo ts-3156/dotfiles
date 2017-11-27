@@ -1,0 +1,3 @@
+[mysql]
+pager = grcat /usr/local/share/grc/conf.mysql | less -iMSx4 -FX -R
+# auto-rehash
