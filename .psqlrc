@@ -1,7 +1,7 @@
 \set PROMPT1 '%[%033[1;33;40m%]psql[%/]%[%033[0m%]\n%# '
 \timing
 \pset border 2
-\setenv 'less -iMSx4 -FX -R'
+\setenv PAGER 'less -iMSx4 -FX -R'
 \pset null '[NULL]'
 -- \x auto
 \set VERBOSITY verbose
