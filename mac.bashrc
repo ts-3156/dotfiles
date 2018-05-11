@@ -22,6 +22,7 @@ git config --global alias.cm 'commit --allow-empty'
 git config --global alias.br 'branch'
 git config --global alias.df 'diff --cached'
 git config --global alias.dff 'diff'
+git config --global core.editor 'nvim -c "set fenc=utf-8"'
 
 alias gco='git co'
 alias gst='git st'
