@@ -17,7 +17,7 @@ if dein#load_state('/Users/terukishinohara/.vim/bundles')
   " Add or remove your plugins here:
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('altercation/vim-colors-solarized')
+  call dein#add('sjl/badwolf')
 
   " You can specify revision/branch/tag.
   call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
@@ -30,9 +30,8 @@ endif
 " Required:
 filetype plugin indent on
 syntax enable
-let g:solarized_termcolors=256
-set background=dark
-colorscheme solarized
+colorscheme badwolf
+highlight Normal ctermbg=none
 
 " If you want to install not installed plugins on startup.
 "if dein#check_install()
@@ -43,10 +42,6 @@ colorscheme solarized
 
 set laststatus=2
 set t_Co=256
-
-let g:lightline = {
-    \ 'colorscheme': 'wombat'
-    \ }
 
 set nocompatible
 set runtimepath+=~/.vim
