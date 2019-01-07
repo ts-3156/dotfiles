@@ -22,7 +22,6 @@ git config --global alias.cm 'commit --allow-empty'
 git config --global alias.br 'branch'
 git config --global alias.df 'diff --cached'
 git config --global alias.dff 'diff'
-git config --global core.editor 'nvim -c "set fenc=utf-8"'
 
 alias gco='git co'
 alias gst='git st'
@@ -38,7 +37,7 @@ eval $(gdircolors ~/.dircolors)
 
 # brew install grc
 # sudo wget -q -O /usr/local/share/grc/conf.mysql https://raw.githubusercontent.com/nitso/colour-mysql-console/master/.grcat
-. /usr/local/etc/grc.bashrc
+# . /usr/local/etc/grc.bashrc
 
 function exit_code()
 {
@@ -62,17 +61,19 @@ export HISTCONTROL=ignoreboth
 export HISTSIZE=10000
 
 # brew install neovim
-# mkdir ~/.config
-# ln -s ~/.vim ~/.config/nvim
-# ln -s ~/.vimrc ~/.config/nvim/init.vim
-alias vi='nvim'
-
+# mkdir -p ~/.config/nvim/bundles
 # curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein_installer.sh
-# mkdir -p ~/.vim/bundles
 # sh ./dein_installer.sh ~/.vim/bundles
+# cp .vimrc ~/.config/nvim/init.vim
 # rm dein_installer.sh
 # .vimrc https://gist.github.com/ts-3156/63f1bdc58b4891cd193ad50a299274a9
+alias vi='nvim'
 
 # wget -q -O ~/.my.cnf https://gist.githubusercontent.com/ts-3156/0156fa90c21996f99d37/raw
 
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.8"`
+# PATH=${JAVA_HOME}/bin:${PATH}
+
