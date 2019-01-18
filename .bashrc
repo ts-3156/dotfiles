@@ -113,7 +113,7 @@ if which colordiff >/dev/null 2>&1 ; then
   alias diff='colordiff'
 fi
 
-if [ ! -f /usr/bin/grc ]; then
+if [ ! -f /usr/local/bin/grc ]; then
   cd ${HOME}
   wget -q https://github.com/garabik/grc/archive/v1.11.3.tar.gz
   tar zxf v1.11.3.tar.gz
@@ -122,6 +122,7 @@ if [ ! -f /usr/bin/grc ]; then
   sudo wget -q -O /usr/local/share/grc/conf.mysql https://raw.githubusercontent.com/ts-3156/dotfiles/master/grc/conf.mysql
   cd ${HOME}
   rm -rf grc-1.11.3 v1.11.3.tar.gz
+  # sudo yum install -y python36
 fi
 
 #if [ ! -f /usr/local/bin/pt ]; then
