@@ -7,7 +7,6 @@ fi
 # sudo cp -p /usr/share/zoneinfo/Japan /etc/localtime
 
 alias tmux='tmux -2'
-# alias ps='ps aux'
 alias be='bundle exec'
 # alias grep='grep --color=auto --line-number'
 
@@ -78,31 +77,31 @@ alias gad='git add'
 #  wget -O ~/.editrc https://gist.githubusercontent.com/ts-3156/0a20e65af503729c0003/raw >/dev/null 2>&1
 #fi
 
-if [ ! -f ${HOME}/.vimrc ]; then
-  wget -q -O ${HOME}/.vimrc https://gist.github.com/ts-3156/5373970/raw
-fi
+#if [ ! -f ${HOME}/.vimrc ]; then
+#  wget -q -O ${HOME}/.vimrc https://gist.github.com/ts-3156/5373970/raw
+#fi
 
-if [ ! -d ${HOME}/.vim/bundle ]; then
-  mkdir -p ${HOME}/.vim/bundle
-fi
-if [ ! -d ${HOME}/.vim/bundle/neobundle.vim ]; then
-  git clone git://github.com/Shougo/neobundle.vim ${HOME}/.vim/bundle/neobundle.vim
-fi
+#if [ ! -d ${HOME}/.vim/bundle ]; then
+#  mkdir -p ${HOME}/.vim/bundle
+#fi
+#if [ ! -d ${HOME}/.vim/bundle/neobundle.vim ]; then
+#  git clone git://github.com/Shougo/neobundle.vim ${HOME}/.vim/bundle/neobundle.vim
+#fi
 
 if [ ! -f ${HOME}/.psqlrc ]; then
-  wget -q -O ${HOME}/.psqlrc https://gist.githubusercontent.com/ts-3156/773897ec7c6fcb3e5ceb/raw
+  wget -q -O ${HOME}/.psqlrc https://raw.githubusercontent.com/ts-3156/dotfiles/master/.psqlrc
 fi
 
 if [ ! -f ${HOME}/.my.cnf ]; then
-  wget -q -O ${HOME}/.my.cnf https://gist.githubusercontent.com/ts-3156/0156fa90c21996f99d37/raw
+  wget -q -O ${HOME}/.my.cnf https://raw.githubusercontent.com/ts-3156/dotfiles/master/.my.cnf
 fi
 
 if [ ! -f ${HOME}/.tmux.conf ]; then
-  wget -q -O ${HOME}/.tmux.conf https://gist.github.com/ts-3156/5373984/raw
+  wget -q -O ${HOME}/.tmux.conf https://raw.githubusercontent.com/ts-3156/dotfiles/master/.tmux.conf
 fi
 
 if [ ! -f ${HOME}/dircolors.256dark ]; then
-  wget -q -O ${HOME}/dircolors.256dark https://raw.github.com/seebi/dircolors-solarized/master/dircolors.256dark
+  wget -q -O ${HOME}/dircolors.256dark https://raw.githubusercontent.com/ts-3156/dotfiles/master/dircolors.256dark
 fi
 eval $(dircolors ${HOME}/dircolors.256dark)
 
@@ -116,13 +115,13 @@ fi
 
 if [ ! -f /usr/bin/grc ]; then
   cd ${HOME}
-  wget -q https://github.com/garabik/grc/archive/v1.9.tar.gz
-  tar zxf v1.9.tar.gz
-  cd grc-1.9
+  wget -q https://github.com/garabik/grc/archive/v1.11.3.zip
+  tar zxf v1.11.3.tar.gz
+  cd grc-1.11.3
   sudo sh ./install.sh
-  sudo wget -q -O /usr/share/grc/conf.mysql https://raw.githubusercontent.com/nitso/colour-mysql-console/master/.grcat
+  sudo wget -q -O /usr/share/grc/conf.mysql https://raw.githubusercontent.com/ts-3156/dotfiles/master/grc/conf.mysql
   cd ${HOME}
-  rm -rf grc-1.9 v1.9.tar.gz
+  rm -rf grc-1.11.3 v1.11.3.tar.gz
 fi
 
 #if [ ! -f /usr/local/bin/pt ]; then
