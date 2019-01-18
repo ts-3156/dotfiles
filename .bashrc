@@ -117,11 +117,11 @@ if [ ! -f /usr/bin/grc ]; then
   cd ${HOME}
   wget -q https://github.com/garabik/grc/archive/v1.11.3.tar.gz
   tar zxf v1.11.3.tar.gz
-  cd v1.11.3
+  cd grc-1.11.3
   sudo sh ./install.sh
-  sudo wget -q -O /usr/share/grc/conf.mysql https://raw.githubusercontent.com/ts-3156/dotfiles/master/grc/conf.mysql
+  sudo wget -q -O /usr/local/share/grc/conf.mysql https://raw.githubusercontent.com/ts-3156/dotfiles/master/grc/conf.mysql
   cd ${HOME}
-  rm -rf v1.11.3 v1.11.3.tar.gz
+  rm -rf grc-1.11.3 v1.11.3.tar.gz
 fi
 
 #if [ ! -f /usr/local/bin/pt ]; then
