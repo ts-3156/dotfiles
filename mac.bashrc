@@ -15,6 +15,8 @@ source /usr/local/etc/bash_completion.d/git-completion.bash
 # git config --global user.email you@example.com
 # git config --global core.editor 'nvim -c "set fenc=utf-8"'
 
+git config --global fetch.prune true
+
 git config --global alias.co 'checkout'
 git config --global alias.st 'status'
 git config --global alias.lg 'log --pretty="format:%C(yellow)%h %C(cyan)[%ad] %Creset%s" --date=format:"%m/%d %H:%M" -n 10'
