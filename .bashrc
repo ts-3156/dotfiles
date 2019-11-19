@@ -52,6 +52,7 @@ git config --global alias.dff 'diff'
 # git config --global alias.fe 'fetch'
 # git config --global alias.me 'merge'
 # git config --global alias.pu 'pull'
+git config --global fetch.prune true
 
 alias gco='git co'
 alias gst='git st'
