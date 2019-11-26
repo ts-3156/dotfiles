@@ -1,3 +1,6 @@
+# Show diff
+# colordiff -u <(curl -s https://raw.githubusercontent.com/ts-3156/dotfiles/master/mac.bashrc)  <(cat ~/.bashrc)
+
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
@@ -14,8 +17,7 @@ source /usr/local/etc/bash_completion.d/git-completion.bash
 # git config --global user.name "Your Name"
 # git config --global user.email you@example.com
 # git config --global core.editor 'nvim -c "set fenc=utf-8"'
-
-git config --global fetch.prune true
+# git config --global pager.diff '/usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less'
 
 git config --global alias.co 'checkout'
 git config --global alias.st 'status'
@@ -24,6 +26,7 @@ git config --global alias.cm 'commit --allow-empty'
 git config --global alias.br 'branch'
 git config --global alias.df 'diff --cached'
 git config --global alias.dff 'diff'
+git config --global fetch.prune true
 
 alias gco='git co'
 alias gst='git st'
