@@ -17,11 +17,14 @@ source /usr/local/etc/bash_completion.d/git-completion.bash
 # git config --global user.name "Your Name"
 # git config --global user.email you@example.com
 # git config --global core.editor 'nvim -c "set fenc=utf-8"'
+
 # git config --global pager.diff '/usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less'
+# git config --global pager.log '/usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less'
+# git config --global pager.show '/usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less'
 
 git config --global alias.co 'checkout'
 git config --global alias.st 'status'
-git config --global alias.lg 'log --pretty="format:%C(yellow)%h %C(cyan)[%ad] %Creset%s" --date=format:"%m/%d %H:%M" -n 10'
+git config --global alias.lg 'log --pretty="format:%C(auto)%h %C(cyan)[%ad] %Creset%s%C(auto)%d" --date=format:"%m/%d %H:%M" -n 10'
 git config --global alias.cm 'commit --allow-empty'
 git config --global alias.br 'branch'
 git config --global alias.df 'diff --cached'
