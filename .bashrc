@@ -1,4 +1,5 @@
-# .bashrc
+# Show diff
+# colordiff -u <(curl -s https://raw.githubusercontent.com/ts-3156/dotfiles/master/.bashrc)  <(cat ~/.bashrc)
 
 if [ -f /etc/bashrc ]; then
   . /etc/bashrc
