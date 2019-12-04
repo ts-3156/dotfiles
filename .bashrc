@@ -34,7 +34,7 @@ function exit_code()
 
 export LESS="-iMSx4 -FX -R"
 # export MYSQL_PS1=$(echo -e "\e[1;33mmysql[\d]\e[0m\n> ") # with color
-export MYSQL_PS1="mysql[\d]\n> " # without color
+export MYSQL_PS1="mysql[\d]> " # without color
 # export PS1="\[\e[33;1m\][\u@\h \w]\$\[\e[m\] " # without git
 export PS1='\[\e[33;1m\][\u@\h \w$(__git_ps1 "[%s]")]\n${HEY_EXIT}\$\[\e[m\] '
 export PROMPT_COMMAND='exit_code; echo -ne "\033]0;localhost\007"'
