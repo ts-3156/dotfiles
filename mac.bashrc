@@ -10,7 +10,11 @@ alias ll='ls -l --color=auto'
 alias l.='ls -d .* --color=auto'
 alias be='bundle exec'
 
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+# brew install bash
+# sudo dscl . -create /Users/$USER UserShell /usr/local/bin/bash
+
+# brew install bash-completion2
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 source /usr/local/etc/bash_completion.d/git-completion.bash
 
