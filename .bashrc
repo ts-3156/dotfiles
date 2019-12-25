@@ -7,6 +7,8 @@ fi
 
 # sudo cp -p /usr/share/zoneinfo/Japan /etc/localtime
 
+# sudo yum install --enablerepo=epel -y bash-completion
+
 alias tmux='tmux -2'
 alias be='bundle exec'
 # alias grep='grep --color=auto --line-number'
