@@ -64,7 +64,7 @@ function exit_code()
 }
 
 export MYSQL_PS1="mysql[\d]> "
-export PS1='\[\e[33;1m\][\u@\h \w$(__git_ps1 "[%s]")]\n${HEY_EXIT}\$\[\e[m\] '
+export PS1='\[\e[35;1m\][\w$(__git_ps1 "[%s]")]\n${HEY_EXIT}\$\[\e[m\] '
 export PROMPT_COMMAND='exit_code; echo -ne "\033]0;${PWD##*/}\007"'
 
 export LESS="-iMSx4 -FX -R"
@@ -89,4 +89,3 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.8"`
 # PATH=${JAVA_HOME}/bin:${PATH}
-
