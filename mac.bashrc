@@ -1,22 +1,23 @@
 # Show diff
 # colordiff -u <(curl -s https://raw.githubusercontent.com/ts-3156/dotfiles/master/mac.bashrc)  <(cat ~/.bashrc)
 
-PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
-MANPATH="/usr/local/opt/findutils/libexec/gnuman:$MANPATH"
+# brew install bash
+# echo '/opt/homebrew/bin/bash' >>/etc/shells
+# chsh -s /opt/homebrew/bin/bash
+
+# brew install coreutils findutils
+PATH="/opt/homebrew/bin:$PATH"
+PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
 
 alias ll='ls -l --color=auto'
-alias l.='ls -d .* --color=auto'
+alias l.='ls -l -d .* --color=auto'
 alias be='bundle exec'
 
-# brew install bash
-# sudo dscl . -create /Users/$USER UserShell /usr/local/bin/bash
-
 # brew install bash-completion2
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-source /usr/local/etc/bash_completion.d/git-prompt.sh
-source /usr/local/etc/bash_completion.d/git-completion.bash
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+source /opt/homebrew/etc/bash_completion.d/git-prompt.sh
+source /opt/homebrew/etc/bash_completion.d/git-completion.bash
 
 # git config --global user.name "Your Name"
 # git config --global user.email you@example.com
@@ -49,8 +50,7 @@ alias gad='git add'
 eval $(gdircolors ~/.dircolors)
 
 # brew install grc
-# sudo wget -q -O /usr/local/share/grc/conf.mysql https://raw.githubusercontent.com/nitso/colour-mysql-console/master/.grcat
-# . /usr/local/etc/grc.bashrc
+# sudo wget -q -O /opt/homebrew/share/grc/conf.mysql https://raw.githubusercontent.com/nitso/colour-mysql-console/master/.grcat
 
 function exit_code()
 {
@@ -68,10 +68,10 @@ export PS1='\[\e[35;1m\][\w$(__git_ps1 "[%s]")]\n${HEY_EXIT}\$\[\e[m\] '
 export PROMPT_COMMAND='exit_code; echo -ne "\033]0;${PWD##*/}\007"'
 
 export LESS="-iMSx4 -FX -R"
-export GREP_OPTIONS='--line-number --color=auto'
+export GREP_OPTIONS='--color=auto'
 
 export HISTCONTROL=ignoreboth
-export HISTSIZE=10000
+export HISTSIZE=100000
 
 # brew install neovim
 # mkdir -p ~/.config/nvim/bundles
