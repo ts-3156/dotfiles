@@ -37,6 +37,7 @@ highlight Normal ctermbg=none
 
 set laststatus=2
 set t_Co=256
+set nofixendofline
 
 set nocompatible
 set runtimepath+=~/.vim
