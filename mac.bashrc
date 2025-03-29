@@ -1,6 +1,9 @@
 # Show diff
 # colordiff -u <(curl -s https://raw.githubusercontent.com/ts-3156/dotfiles/master/mac.bashrc)  <(cat ~/.bashrc)
 
+# Disable auto update
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 # brew install bash
 # echo '/opt/homebrew/bin/bash' >>/etc/shells
 # chsh -s /opt/homebrew/bin/bash
@@ -23,9 +26,9 @@ source /opt/homebrew/etc/bash_completion.d/git-completion.bash
 # git config --global user.email you@example.com
 # git config --global core.editor 'nvim -c "set fenc=utf-8"'
 
-# git config --global pager.diff '/usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less'
-# git config --global pager.log '/usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less'
-# git config --global pager.show '/usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less'
+# git config --global pager.diff '/opt/homebrew/share/git-core/contrib/diff-highlight/diff-highlight | less'
+# git config --global pager.log '/opt/homebrew/share/git-core/contrib/diff-highlight/diff-highlight | less'
+# git config --global pager.show '/opt/homebrew/share/git-core/contrib/diff-highlight/diff-highlight | less'
 
 git config --global alias.co 'checkout'
 git config --global alias.st 'status'
@@ -84,8 +87,18 @@ alias vi='nvim'
 
 # wget -q -O ~/.my.cnf https://gist.githubusercontent.com/ts-3156/0156fa90c21996f99d37/raw
 
-# eval "$(rbenv init -)"
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.8"`
-# PATH=${JAVA_HOME}/bin:${PATH}
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+. "$HOME/.deno/env"
+. "$HOME/.cargo/env"
+
+alias beep='for i in {1..1}; do afplay /System/Library/Sounds/Submarine.aiff; done'
