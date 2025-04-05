@@ -19,8 +19,8 @@ alias be='bundle exec'
 
 # brew install bash-completion2
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
-source /opt/homebrew/etc/bash_completion.d/git-prompt.sh
-source /opt/homebrew/etc/bash_completion.d/git-completion.bash
+# source /opt/homebrew/etc/bash_completion.d/git-prompt.sh
+# source /opt/homebrew/etc/bash_completion.d/git-completion.bash
 
 # git config --global user.name "Your Name"
 # git config --global user.email you@example.com
@@ -55,6 +55,16 @@ eval $(gdircolors ~/.dircolors)
 # brew install grc
 # sudo wget -q -O /opt/homebrew/share/grc/conf.mysql https://raw.githubusercontent.com/nitso/colour-mysql-console/master/.grcat
 
+_show_cursor() {
+  echo -ne "\e[?25h"
+}
+_hide_cursor() {
+  echo -ne "\e[?25l"
+}
+echo -ne "\e[?1004h" # Enable focus-reporting. Disable -> echo -ne '\e[?1004l'
+bind -x '"\e[I":"_show_cursor"'
+bind -x '"\e[O":"_hide_cursor"'
+
 function exit_code()
 {
   a=$?
@@ -67,8 +77,8 @@ function exit_code()
 }
 
 export MYSQL_PS1="mysql[\d]> "
-export PS1='\[\e[35;1m\][\w$(__git_ps1 "[%s]")]\n${HEY_EXIT}\$\[\e[m\] '
-export PROMPT_COMMAND='exit_code; echo -ne "\033]0;${PWD##*/}\007"'
+export PS1='\[\e[35;1m\][\w$(__git_ps1 "[%s]")]\[\e[m\]\n\[\e[35;1m\]${HEY_EXIT}\$\[\e[m\] '
+export PROMPT_COMMAND='exit_code; echo -ne "\033];${PWD##*/}\007"'
 
 export LESS="-iMSx4 -FX -R"
 export GREP_OPTIONS='--color=auto'
