@@ -8,7 +8,7 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # echo '/opt/homebrew/bin/bash' >>/etc/shells
 # chsh -s /opt/homebrew/bin/bash
 
-# brew install coreutils findutils
+# brew install coreutils findutils grep
 PATH="/opt/homebrew/bin:$PATH"
 PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
@@ -55,36 +55,31 @@ eval $(gdircolors ~/.dircolors)
 # brew install grc
 # sudo wget -q -O /opt/homebrew/share/grc/conf.mysql https://raw.githubusercontent.com/nitso/colour-mysql-console/master/.grcat
 
-_show_cursor() {
-  echo -ne "\e[?25h"
-}
-_hide_cursor() {
-  echo -ne "\e[?25l"
-}
-echo -ne "\e[?1004h" # Enable focus-reporting. Disable -> echo -ne '\e[?1004l'
-bind -x '"\e[I":"_show_cursor"'
-bind -x '"\e[O":"_hide_cursor"'
+set_prompt() {
+  local st=$?
+  local exit_mark=
 
-function exit_code()
-{
-  a=$?
-  if [ $a -ne 0 ]; then
-    export HEY_EXIT='error '
-  else
-    export HEY_EXIT=''
+  if (( st != 0 )); then
+    exit_mark='error '
   fi
-  return $a
+
+  PS1="\[\e[35;1m\][\w$(__git_ps1 "[%s]")]\n${exit_mark}\\$\[\e[m\] "
+  printf '\033]0;%s\007' "${PWD##*/}"
+  history -a
+  return "$st"
 }
+
+PROMPT_COMMAND=set_prompt
 
 export MYSQL_PS1="mysql[\d]> "
-export PS1='\[\e[35;1m\][\w$(__git_ps1 "[%s]")]\[\e[m\]\n\[\e[35;1m\]${HEY_EXIT}\$\[\e[m\] '
-export PROMPT_COMMAND='exit_code; echo -ne "\033];${PWD##*/}\007"'
 
 export LESS="-iMSx4 -FX -R"
-export GREP_OPTIONS='--color=auto'
+# export GREP_OPTIONS='--color=auto'
 
-export HISTCONTROL=ignoreboth
-export HISTSIZE=100000
+HISTCONTROL=ignoreboth
+HISTSIZE=100000
+HISTFILESIZE=100000
+HISTTIMEFORMAT="%Y-%m-%d %T "
 
 # brew install neovim
 # mkdir -p ~/.config/nvim/bundles
@@ -101,8 +96,10 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
+if [ -w "$HOME/.pyenv/shims" ]; then
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
