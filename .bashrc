@@ -23,23 +23,40 @@ if [ ! -f ${HOME}/git-prompt.sh ]; then
 fi
 source ${HOME}/git-prompt.sh
 
-function exit_code()
-{
-  a=$?
-  if [ $a -ne 0 ]; then
-    export HEY_EXIT='error '
-  else
-    export HEY_EXIT=''
-  fi
-  return $a
+EC2_PROMPT_TITLE='not-set'
+
+init_ec2_prompt_title() {
+  local token
+  local role_tag
+
+  token="$(curl -fsS -X PUT 'http://169.254.169.254/latest/api/token' -H 'X-aws-ec2-metadata-token-ttl-seconds: 21600' || true)"
+  [[ -z "$token" ]] && return 0
+
+  role_tag="$(curl -fsS -H "X-aws-ec2-metadata-token: $token" 'http://169.254.169.254/latest/meta-data/tags/instance/Role' || true)"
+  [[ -n "$role_tag" ]] && EC2_PROMPT_TITLE="$role_tag"
 }
+
+set_prompt() {
+  local st=$?
+  local exit_mark=
+
+  if (( st != 0 )); then
+    exit_mark='error '
+  fi
+
+  PS1="\[\e[33;1m\][\u@\h \w$(__git_ps1 '[%s]')]\n${exit_mark}\\$\[\e[m\] "
+  printf '\033]0;%s\007' "$EC2_PROMPT_TITLE"
+  history -a
+  return "$st"
+}
+
+init_ec2_prompt_title
+PROMPT_COMMAND=set_prompt
 
 export LESS="-iMSx4 -FX -R"
 # export MYSQL_PS1=$(echo -e "\e[1;33mmysql[\d]\e[0m\n> ") # with color
 export MYSQL_PS1="mysql[\d]> " # without color
 # export PS1="\[\e[33;1m\][\u@\h \w]\$\[\e[m\] " # without git
-export PS1='\[\e[33;1m\][\u@\h \w$(__git_ps1 "[%s]")]\n${HEY_EXIT}\$\[\e[m\] '
-export PROMPT_COMMAND='exit_code; echo -ne "\033]0;localhost\007"'
 
 git config --global color.ui auto
 git config --global push.default current
@@ -109,8 +126,10 @@ if [ ! -f ${HOME}/dircolors.256dark ]; then
 fi
 eval $(dircolors ${HOME}/dircolors.256dark)
 
-export HISTCONTROL=ignoreboth
-export HISTSIZE=10000
+HISTCONTROL=ignoreboth
+HISTSIZE=100000
+HISTFILESIZE=100000
+HISTTIMEFORMAT="%Y-%m-%d %T "
 
 # if [[ -x `which colordiff >/dev/null 2>&1` ]]; then
 if which colordiff >/dev/null 2>&1 ; then
